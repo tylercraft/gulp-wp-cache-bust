@@ -1,6 +1,6 @@
 {
   "name": "gulp-wp-cache-bust",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Revisioning worpdress theme files by appending a hash to your assets path.",
   "license": "MIT",
   "repository": "tylercraft/gulp-cms-cache-bust",
@@ -30,13 +30,13 @@
     "wordpress"
   ],
   "engines": {
-		"node": ">=4.4.5",
+    "node": ">=4.4.5",
     "npm": ">=2.15.1"
-	},
+  },
   "scripts": {
-		"test": "istanbul test _mocha --report html -- test.js --reporter spec",
-		"coveralls": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
-	},
+    "test": "istanbul test _mocha --report html -- test.js --reporter spec",
+    "coveralls": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+  },
   "files": [
     "index.js"
   ],
@@ -46,11 +46,11 @@
   },
   "devDependencies": {
     "coveralls": "*",
-		"event-stream": "*",
-		"gulp": "^3.8.8",
-		"istanbul": "*",
-		"mocha": "*",
-		"mocha-lcov-reporter": "*",
+    "event-stream": "*",
+    "gulp": "^3.8.8",
+    "istanbul": "*",
+    "mocha": "*",
+    "mocha-lcov-reporter": "*",
     "should": "~11.1.1"
   }
 }
