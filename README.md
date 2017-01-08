@@ -1,6 +1,8 @@
 # gulp-wp-cache-bust
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url]  [![Coverage Status][coveralls-image]][coveralls-url] [![Dependency Status][depstat-image]][depstat-url]
 
+> wordpress cache busting plugin for [gulp](https://github.com/tylercraft/gulp-wp-cache-bust)
+
 ## Install
 
 ```
