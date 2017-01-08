@@ -1,6 +1,6 @@
 # gulp-wp-cache-bust
 
-> wordpress cache busting plugin for [gulp](https://github.com/tylercraft/gulp-wp-cache-bust)
+> Wordpress cache busting plugin for [gulp](https://github.com/tylercraft/gulp-wp-cache-bust)
 
 ## Install
 
