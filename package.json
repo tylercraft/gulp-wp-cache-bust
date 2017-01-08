@@ -3,7 +3,7 @@
   "version": "1.0.2",
   "description": "Revisioning worpdress theme files by appending a hash to your assets path.",
   "license": "MIT",
-  "repository": "tylercraft/gulp-cms-cache-bust",
+  "repository": "tylercraft/gulp-wp-cache-bust",
   "author": {
     "name": "Tyler Craft",
     "email": "tyler@tylercraft.com",
