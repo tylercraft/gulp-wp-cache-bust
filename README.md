@@ -1,4 +1,4 @@
-# gulp-wp-cache-bust [![Build Status](https://travis-ci.org/tylercraft/gulp-wp-cache-bust.svg?branch=master)](https://travis-ci.org/tylercraft/gulp-wp-cache-bust)
+# gulp-wp-cache-bust &middot; [![Build Status](https://img.shields.io/travis/tylercraft/gulp-wp-cache-bust.svg?style=flat-square)](https://travis-ci.org/tylercraft/gulp-wp-cache-bust)
 
 > Wordpress cache busting plugin for [gulp](https://github.com/tylercraft/gulp-wp-cache-bust)
 
