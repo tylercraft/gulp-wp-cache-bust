@@ -1,4 +1,4 @@
-# gulp-wp-cache-bust &middot; [![Build Status](https://img.shields.io/travis/tylercraft/gulp-wp-cache-bust.svg?style=flat-square)](https://travis-ci.org/tylercraft/gulp-wp-cache-bust)
+# gulp-wp-cache-bust &middot; [![Build Status](https://img.shields.io/travis/tylercraft/gulp-wp-cache-bust.svg?style=flat-square)](https://travis-ci.org/tylercraft/gulp-wp-cache-bust) [![Coverage Status](https://img.shields.io/coveralls/tylercraft/gulp-wp-cache-bust/master.svg?style=flat-square)](https://coveralls.io/github/tylercraft/gulp-wp-cache-bust?branch=master) [![npm version](https://img.shields.io/npm/v/gulp-wp-cache-bust.svg?style=flat-square)](https://www.npmjs.com/package/gulp-wp-cache-bust)
 
 > Wordpress cache busting plugin for [gulp](https://github.com/tylercraft/gulp-wp-cache-bust)
 
