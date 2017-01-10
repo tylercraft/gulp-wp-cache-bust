@@ -2,6 +2,29 @@
 
 > Wordpress cache busting plugin for [gulp](https://github.com/tylercraft/gulp-wp-cache-bust)
 
+
+## Wordpress config
+
+There are many ways to embed files in Wordpress. You can manually link to a file, or use the `wp_enqueue_script`/`wp_enqueue_style` and `wp_register_script`/`wp_register_style` methods. Often there could be a need to mix and match both methods within the same theme. To cachebust your files, create a php file within your theme and define the files as constants:
+
+```
+<?php
+
+define('WP_PATH_TO_FILE', get_template_directory_uri() . '/css/reset.css');
+define('ABSOLUTE_PATH_TO_FILE', '/css/reset.css');
+define('THIRD_PARTY', 'https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js');
+```
+
+This plugin will read this file and modify it to this:
+
+```
+<?php
+
+define('WP_PATH_TO_FILE', get_template_directory_uri() . '/css/reset.css?v=84507b8f4af3062c3888dbd83bde27ea');
+define('ABSOLUTE_PATH_TO_FILE', '/css/reset.css?v=84507b8f4af3062c3888dbd83bde27ea');
+define('THIRD_PARTY', 'https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js');
+```
+
 ## Install
 
 ```
