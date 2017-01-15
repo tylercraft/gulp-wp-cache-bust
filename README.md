@@ -35,7 +35,7 @@ An example functions.php file:
 include 'scripts.php';
 
 wp_enqueue_style('reset_css', RESET_CSS);
-wp_enqueue_script('site_vendor_js', VENDOR_JS, null, false, true );
+wp_enqueue_script('site_vendor_js', VENDOR_JS, null, false, true);
 
 ```
 
