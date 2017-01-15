@@ -1,6 +1,6 @@
 {
   "name": "gulp-wp-cache-bust",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Revisioning worpdress theme files by appending a hash to your assets path.",
   "license": "MIT",
   "repository": "tylercraft/gulp-wp-cache-bust",
