@@ -10,7 +10,7 @@ There are many ways to embed files in Wordpress. You can manually link to a file
 ```
 <?php
 
-define('WP_PATH_TO_FILE', get_template_directory_uri() . '/css/reset.css');
+define('RESET_CSS', get_template_directory_uri() . '/css/reset.css');
 define('ABSOLUTE_PATH_TO_FILE', '/css/reset.css');
 define('THIRD_PARTY', 'https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js');
 ```
@@ -20,9 +20,23 @@ This plugin will read this file and modify it to this:
 ```
 <?php
 
-define('WP_PATH_TO_FILE', get_template_directory_uri() . '/css/reset.css?v=84507b8f4af3062c3888dbd83bde27ea');
+define('RESET_CSS', get_template_directory_uri() . '/css/reset.css?v=84507b8f4af3062c3888dbd83bde27ea');
 define('ABSOLUTE_PATH_TO_FILE', '/css/reset.css?v=84507b8f4af3062c3888dbd83bde27ea');
 define('THIRD_PARTY', 'https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js');
+```
+
+You can then use these constants in functions.php (or wherever you want).
+
+An example functions.php file:
+
+```
+<?php
+
+include 'scripts.php';
+
+wp_enqueue_style('reset_css', RESET_CSS);
+wp_enqueue_script('site_vendor_js', VENDOR_JS, null, false, true );
+
 ```
 
 ## Install
