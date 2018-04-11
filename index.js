@@ -1,5 +1,4 @@
-var gutil = require('gulp-util');
-var PluginError = gutil.PluginError;
+var PluginError = require('plugin-error');;
 
 var crypto = require('crypto');
 var fs = require('fs');
