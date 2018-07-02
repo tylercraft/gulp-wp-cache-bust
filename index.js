@@ -68,7 +68,7 @@ function gulpWPCacheBust(options) {
               var r = /(get_template_directory_uri\(\)[ .]+)/g;
               if(r.test(cleanFilePath)){
                 if (options.themeFolder) {
-                  cleanFilePath = cleanFilePath.replace(r, options.themeFolder);
+                  cleanFilePath = cleanFilePath.replace(r, options.themeFolder).replace(/\/\//g, "/");
                 } else {
                   throw new PluginError(PLUGIN_NAME, 'Theme folder is not defined.');
                 }
