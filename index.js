@@ -1,22 +1,22 @@
-var gutil = require('gulp-util');
+var gutil = require("gulp-util");
 var PluginError = gutil.PluginError;
 
-var crypto = require('crypto');
-var fs = require('fs');
-var through = require('through2');
+var crypto = require("crypto");
+var fs = require("fs");
+var through = require("through2");
 
-const PLUGIN_NAME = 'gulp-wp-cache-bust';
+const PLUGIN_NAME = "gulp-wp-cache-bust";
 
 function md5(str) {
-  var hash = crypto.createHash('md5');
+  var hash = crypto.createHash("md5");
   hash.update(fs.readFileSync(str));
-  return hash.digest('hex');
-};
+  return hash.digest("hex");
+}
 
 function removePreviousVersioning(filePath) {
   // Remove any previous cache busting references
   return filePath.lastIndexOf("?v=") > 0
-    ? filePath.substring(0, filePath.lastIndexOf("?v=")) + '\''
+    ? filePath.substring(0, filePath.lastIndexOf("?v=")) + "'"
     : filePath;
 }
 
@@ -24,21 +24,21 @@ function gulpWPCacheBust(options) {
   options = options || {};
 
   if (!options.rootPath) {
-    options.rootPath = '';
+    options.rootPath = "";
   }
 
-	return through.obj(function (file, enc, cb) {
-		if (file.isNull()) {
-			cb(null, file);
-			return;
-		}
+  return through.obj(function (file, enc, cb) {
+    if (file.isNull()) {
+      cb(null, file);
+      return;
+    }
 
-		if (file.isStream()) {
-      throw new PluginError(PLUGIN_NAME, 'Streaming not supported!');
-		}
+    if (file.isStream()) {
+      throw new PluginError(PLUGIN_NAME, "Streaming not supported!");
+    }
 
-		if (file.isBuffer()) {
-			file.contents = new Buffer(String(file.contents));
+    if (file.isBuffer()) {
+      file.contents = new Buffer(String(file.contents));
 
       var regex = /(define\(([^;]+)\))/g;
 
@@ -53,37 +53,55 @@ function gulpWPCacheBust(options) {
         if (m[2]) {
           var ogDefinition = m[2];
           var nonVersionedDefinition = removePreviousVersioning(ogDefinition);
-          var params = nonVersionedDefinition.split(',');
+          var params = nonVersionedDefinition.split(",");
 
           if (params[1]) {
             filePath = params[1].trim();
 
             // Only check local files
-            if(!(/(http:\/\/|https:\/\/)/.test(filePath))){
+            if (!/(http:\/\/|https:\/\/)/.test(filePath)) {
               // remove ticks/quotes
               var r = /(['"]+)/g;
-              cleanFilePath = filePath.replace(r, '');
+              cleanFilePath = filePath.replace(r, "");
 
-              // if using get_template_directory_uri, swap for themeFolder
+              // if using get_template_directory_uri or get_stylesheet_directory_uri
+              // swap for themeFolder
               var r = /(get_template_directory_uri\(\)[ .]+)/g;
-              if(r.test(cleanFilePath)){
+              var j = /(get_stylesheet_directory_uri\(\)[ .]+)/g;
+              if (r.test(cleanFilePath)) {
                 if (options.themeFolder) {
-                  cleanFilePath = cleanFilePath.replace(r, options.themeFolder).replace(/\/\//g, "/");
+                  cleanFilePath = cleanFilePath
+                    .replace(r, options.themeFolder)
+                    .replace(/\/\//g, "/");
                 } else {
-                  throw new PluginError(PLUGIN_NAME, 'Theme folder is not defined.');
+                  throw new PluginError(
+                    PLUGIN_NAME,
+                    "Theme folder is not defined."
+                  );
                 }
-              } else if (cleanFilePath[0] === '/') {
+              } else if (j.test(cleanFilePath)) {
+                if (options.themeFolder) {
+                  cleanFilePath = cleanFilePath
+                    .replace(j, options.themeFolder)
+                    .replace(/\/\//g, "/");
+                } else {
+                  throw new PluginError(
+                    PLUGIN_NAME,
+                    "Theme folder is not defined."
+                  );
+                }
+              } else if (cleanFilePath[0] === "/") {
                 // Absolute path
-                cleanFilePath = cleanFilePath.replace('/', options.rootPath);
+                cleanFilePath = cleanFilePath.replace("/", options.rootPath);
               } else {
                 return;
               }
 
               var hashCSS = md5(cleanFilePath);
 
-              var slashSplits = cleanFilePath.split('/');
+              var slashSplits = cleanFilePath.split("/");
               var fileName = slashSplits[slashSplits.length - 1];
-              var versionedFileName = fileName + '?v=' + hashCSS;
+              var versionedFileName = fileName + "?v=" + hashCSS;
               var newDefinition = nonVersionedDefinition.replace(
                 fileName,
                 versionedFileName
@@ -97,11 +115,11 @@ function gulpWPCacheBust(options) {
         }
       }
 
-			this.push(file);
-		}
+      this.push(file);
+    }
 
-		cb(null, file);
-	});
-};
+    cb(null, file);
+  });
+}
 
 module.exports = gulpWPCacheBust;

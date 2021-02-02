@@ -2,7 +2,6 @@
 
 > Wordpress cache busting plugin for [gulp](https://github.com/tylercraft/gulp-wp-cache-bust)
 
-
 ## Wordpress config
 
 There are many ways to embed files in Wordpress. You can manually link to a file, or use the `wp_enqueue_script`/`wp_enqueue_style` and `wp_register_script`/`wp_register_style` methods. Often there could be a need to mix and match both methods within the same theme. To cachebust your files, create a php file within your theme and define the files as constants:
@@ -45,23 +44,24 @@ wp_enqueue_script('site_vendor_js', VENDOR_JS, null, false, true);
 $ npm install --save-dev gulp-wp-cache-bust
 ```
 
-
 ## Usage
 
 ```js
-const gulp = require('gulp');
-const wpcachebust = require('gulp-wp-cache-bust');
+const gulp = require("gulp");
+const wpcachebust = require("gulp-wp-cache-bust");
 
-gulp.task('default', () =>
-  gulp.src('./dev/wp-content/themes/themeName/scripts.php', {base: './'})
-      .pipe(wpcachebust({
-        themeFolder: './dev/wp-content/themes/themeName',
-        rootPath: './'
-      }))
-      .pipe(gulp.dest('./'))
+gulp.task("default", () =>
+  gulp
+    .src("./dev/wp-content/themes/themeName/scripts.php", { base: "./" })
+    .pipe(
+      wpcachebust({
+        themeFolder: "./dev/wp-content/themes/themeName",
+        rootPath: "./",
+      })
+    )
+    .pipe(gulp.dest("./"))
 );
 ```
-
 
 ## API
 
@@ -83,7 +83,7 @@ Root path of dev folder. Used if path to file is absolute (`/css/main.css/`).
 Type: `string`<br>
 Default: `null`
 
-Path to Wordpress theme folder. Used to find file when path to includes `get_template_directory_uri()`.
+Path to Wordpress theme folder. Used to find file when path to includes `get_template_directory_uri()` or `get_stylesheet_directory_uri()`.
 
 ## License
 
