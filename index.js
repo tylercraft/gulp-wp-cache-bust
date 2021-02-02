@@ -1,5 +1,4 @@
-var gutil = require("gulp-util");
-var PluginError = gutil.PluginError;
+var PluginError = require("plugin-error");
 
 var crypto = require("crypto");
 var fs = require("fs");
@@ -38,12 +37,12 @@ function gulpWPCacheBust(options) {
     }
 
     if (file.isBuffer()) {
-      file.contents = new Buffer(String(file.contents));
+      file.contents = Buffer.from(String(file.contents));
 
       var regex = /(define\(([^;]+)\))/g;
 
       var m;
-      var buffer = new Buffer(String(file.contents));
+      var buffer = Buffer.from(String(file.contents));
       while ((m = regex.exec(buffer)) !== null) {
         // This is necessary to avoid infinite loops with zero-width matches
         if (m.index === regex.lastIndex) {
@@ -106,8 +105,8 @@ function gulpWPCacheBust(options) {
                 fileName,
                 versionedFileName
               );
-              //console.log(definition, newDefinition);
-              file.contents = new Buffer(
+
+              file.contents = Buffer.from(
                 String(file.contents).replace(ogDefinition, newDefinition)
               );
             }
